@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html {
+            background: #212329;
+            color: #e9e6e3;
+            padding: 2.5rem;
+        }
+
+        t1 {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffab00;
+        }
+        t2 {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #27f;
+        }
+    </style>
+</head>
+<body>
+    <t1>Todos</t1>
+
+    <form onsubmit="onSubmit( event )"> 
+        <input name="todo" type="text">
+        <input type="submit" value="Add Todo">
+    </form>
+
+    <ul id="todos"></ul>
+
+
+    
+
+
+    <script>
+        const $     = v => document.querySelector( v ),
+              $$    = v => document.querySelectorAll( v ),
+              log   = v => console.log( v ),
+              table = v => console.table( v ),
+              warn  = v => console.warn( v ),
+              error = v => console.error( v ),
+              group = v => console.group( v );
+
+        function onSubmit( event ) {
+            event.preventDefault();
+            addTodo( input.value );
+            input.value = "";
+        }
+
+
+        // Get DOM elements
+        const form  = $( "form" );
+        const input = $( "[name='todo']" );
+        const todoList = document.getElementById( "todos" );
+
+         // Side Effects / Lifecycle
+    
+        const existingTodos = JSON.parse( localStorage.getItem( "todos" ) ) || [];
+
+        const todoData = [];
+        
+        existingTodos.forEach( todo => {
+            addTodo( todo );
+        } );
+
+
+        function addTodo( todoText ) {
+            todoData.push( todoText );
+            const li = document.createElement( "li" );
+            li.innerHTML = todoText;
+            todoList.append( li );
+            localStorage.setItem( "todos", JSON.stringify( todoData ) );
+            input.value = "";
+        }
+
+        // Events
+        // form.onsubmit = ( event ) => {
+        //     event.preventDefault();
+        //     addTodo( input.value );
+        // }
+
+
+    </script>
+    
+</body>
+</html>

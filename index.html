@@ -58,15 +58,13 @@
 
 
         // Get DOM elements
-        const form  = $( "form" );
-        const input = $( "[name='todo']" );
-        const todoList = document.getElementById( "todos" );
+        const form  = $( "form" ),
+              input = $( "[name='todo']" ),
+              todoList = document.getElementById( "todos" );
 
          // Side Effects / Lifecycle
-    
-        const existingTodos = JSON.parse( localStorage.getItem( "todos" ) ) || [];
-
-        const todoData = [];
+        const existingTodos = JSON.parse( localStorage.getItem( "todos" ) ) || [],
+              todoData = [];
         
         existingTodos.forEach( todo => {
             addTodo( todo );
